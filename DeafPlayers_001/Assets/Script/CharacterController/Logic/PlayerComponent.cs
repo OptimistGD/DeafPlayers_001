@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Script.Logic
 {
     public abstract class PlayerComponent : MonoBehaviour, IPlayerComponent
     {
-        protected PlayerController playerController; 
-        
-        public void Initialize(PlayerController playerController)
+        protected PlayerController playerController;
+
+        protected virtual void Awake()
         {
-            this.playerController = playerController;
+            playerController = GetComponentInParent<PlayerController>();
+            
+            playerController.AddComponent(GetType().Name, this);
+            
         }
     }
 }

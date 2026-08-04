@@ -1,32 +1,24 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Script.Logic
 {
-    public class PlayerController : MonoBehaviour
+    public partial class PlayerController : MonoBehaviour
     {
-
-        public event Action<Vector3> OnVelocityChange;
-
-        PlayerControls characterControls;
-        PlayerCamera playerCamera;
-        PlayerMovement playerMovement;
-        
-        PlayerComponent[] playerComponents;
-
-        internal bool IsGrounded;
-        
-        void Awake()
+        public Vector3 Direction
         {
-            playerComponents = GetComponentsInChildren<PlayerComponent>();
-            
-            foreach (IPlayerComponent playerComponent in playerComponents)
+            get
             {
-                playerComponent.Initialize(this);
+                if (TryGetFirstComponent<PlayerControls>(out var playerControls))
+                {
+                    var direction2D = playerControls.GetInputDirection();
+                    return new Vector3(direction2D.x, 0, direction2D.y);
+                }
+                
+                return Vector3.zero;
             }
-            
         }
-        
-        
     }
 }

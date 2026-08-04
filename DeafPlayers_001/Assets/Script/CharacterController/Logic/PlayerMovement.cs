@@ -9,22 +9,34 @@ namespace Script.Logic
     {
         MonoPlayerMovement  monoPlayerMovement;
         
-        
+        [SerializeField]
+        private CharacterController characterController;
+
+        [SerializeField]
         private float playerSpeed;
+        
         private float jumpHeight;
         private float gravityValue;
         private Vector3 playerVelocity;
         private bool groundedPlayer;
         private Vector3 currentVelocity;
-
+        
 
         void Update()
         {
-            groundedPlayer = playerController.IsGrounded;
+            groundedPlayer = characterController.isGrounded;
             if (groundedPlayer && playerVelocity.y < 0)
             {
                 playerVelocity.y = 0f;
             }
+            
+            ComputeMovement();
+        }
+
+        public void ComputeMovement()
+        {
+            Debug.Log($"Direction {playerController.Direction}");
+            characterController.Move(playerController.Direction * (playerSpeed * Time.deltaTime));
         }
 
         private Vector3 GetDirection()
@@ -53,19 +65,7 @@ namespace Script.Logic
             Vector3 finalVelocity = GetDirection() * playerSpeed + (playerVelocity.y * Vector3.up);
             playerVelocity += finalVelocity;
         }
-
         
-        private void OnEnable()
-        {
-            moveAction.action.Enable();
-            jumpAction.action.Enable();
-        }
-
-        private void OnDisable()
-        {
-            moveAction.action.Disable();
-            jumpAction.action.Disable();
-        }
         
     }
 }
