@@ -1,0 +1,17 @@
+{
+    "name": "DeafPlayers.Gameplay",
+    "rootNamespace": "DeafPlayers.Gameplay",
+    "references": [
+        "GUID:c18c1d7ae7dcedd45b09c6dc7ecd3f9c",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
