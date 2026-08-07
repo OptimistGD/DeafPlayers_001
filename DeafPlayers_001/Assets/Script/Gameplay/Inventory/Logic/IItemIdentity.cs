@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory
+namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
 {
     public interface IItemIdentity
     {

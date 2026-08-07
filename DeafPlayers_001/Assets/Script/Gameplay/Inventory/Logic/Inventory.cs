@@ -1,19 +1,19 @@
-﻿using DeafPlayers.Gameplay.Script.Gameplay.Inventory.Data;
-using DeafPlayers.Gameplay.Script.Gameplay.Inventory.Visual;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory.Logic
+namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
 {
     public class Inventory :  MonoBehaviour
     {
         [SerializeField] private MonoInventoryDisplay display;
-        [SerializeField] private InventoryData inventoryData;
+        private InventoryData inventoryData;
         
         public void Awake()
         {
             int slotsCount = display.Initialize();
             
             inventoryData = new InventoryData(slotsCount);
+            
+            display.UpdateDisplay(inventoryData.items);
         }
         public Item AddItem(Item item)
         {

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c04a409de54aaa8523e8ce3e4dea54, type: 3}
   m_Name: ItemData2
   m_EditorClassIdentifier: DeafPlayers.Gameplay::DeafPlayers.Gameplay.Script.Gameplay.Inventory.ItemData
-  stackMaxCount: 1
+  stackMaxCount: 20

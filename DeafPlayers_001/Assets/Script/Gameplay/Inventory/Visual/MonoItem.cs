@@ -1,7 +1,7 @@
-﻿using System;
+﻿using DeafPlayers.Gameplay.Script.Gameplay.Logic;
 using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory.Visual
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public class MonoItem : MonoBehaviour
     {

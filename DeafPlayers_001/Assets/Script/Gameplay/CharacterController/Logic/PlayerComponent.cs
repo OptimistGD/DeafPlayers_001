@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Script.Logic
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public abstract class PlayerComponent : MonoBehaviour, IPlayerComponent
     {

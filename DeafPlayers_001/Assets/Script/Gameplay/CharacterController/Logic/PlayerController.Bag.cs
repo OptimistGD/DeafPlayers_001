@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Script.Logic
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public partial class PlayerController
     {

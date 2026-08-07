@@ -1,8 +1,7 @@
 ﻿using System;
-using DeafPlayers.Gameplay.Script.Gameplay.Inventory.Data;
 using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory
+namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
 {
     [System.Serializable]
     public struct Item : IItemIdentity
@@ -23,8 +22,9 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory
 
         public bool AvailableFor(Item other) => Empty || (Data == other.data && !Full);
         public ItemData Data => data;
-        public bool Full => data && currentCountStack >= data.stackMaxCount;
+        public bool Full => data && currentCountStack >= data.StackMaxCount;
         public bool Empty => currentCountStack == 0 || data  == null;
+        public int Count => currentCountStack;
 
         public void MergeOnStack(ref Item newItems)
         {
@@ -47,7 +47,7 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory
             int currentTotal = newItems.currentCountStack + currentCountStack;
 
             //if total < the max of current item, old stack = total && new items = 0 (transfert de data)
-            if (currentTotal <= data.stackMaxCount)
+            if (currentTotal <= data.StackMaxCount)
             {
                 currentCountStack = currentTotal;
                 newItems.currentCountStack = 0;
@@ -56,7 +56,7 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory
             }
             
             //if total max or equals the max of the item's stack, the stack is full && return the difference / reste
-            currentCountStack = data.stackMaxCount;
+            currentCountStack = data.StackMaxCount;
             newItems.currentCountStack = currentTotal - currentCountStack;
             Debug.Log("items is not added");
         }

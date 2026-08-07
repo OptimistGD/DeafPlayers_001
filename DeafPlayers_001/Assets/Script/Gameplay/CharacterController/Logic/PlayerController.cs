@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Script.Logic
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public partial class PlayerController : MonoBehaviour
     {

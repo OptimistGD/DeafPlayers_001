@@ -314,6 +314,9 @@ namespace Gameplay.CharacterController.Controls
             public void Disable() { Get().Disable(); }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
             public bool enabled => Get().enabled;
+
+            public InputAction @OpenInventory => m_Wrapper.m_Gameplay_Jump;
+
             /// <summary>
             /// Implicitly converts an <see ref="GameplayActions" /> to an <see ref="InputActionMap" /> instance.
             /// </summary>

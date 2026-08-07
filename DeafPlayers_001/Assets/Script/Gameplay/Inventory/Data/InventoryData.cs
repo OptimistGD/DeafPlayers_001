@@ -1,7 +1,8 @@
 ﻿using System;
+using DeafPlayers.Gameplay.Script.Gameplay.Logic;
 using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory.Data
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     [System.Serializable]
     public class InventoryData

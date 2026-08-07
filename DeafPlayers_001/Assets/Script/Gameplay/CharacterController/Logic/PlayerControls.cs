@@ -1,17 +1,18 @@
-﻿using System;
-using Gameplay.CharacterController.Controls;
+﻿using Gameplay.CharacterController.Controls;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-namespace Script.Logic
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public class PlayerControls : PlayerComponent
     {
         
+        private PlayerInputActions PlayerInputActions { get; set; }
         public InputAction MoveAction => PlayerInputActions.Gameplay.Move;
         public InputAction JumpAction => PlayerInputActions.Gameplay.Jump;
-        
-        public PlayerInputActions PlayerInputActions { get; private set; }
+        public InputAction OpenInventory => PlayerInputActions.Gameplay.OpenInventory;
+
         
         
         /// <summary>
@@ -30,9 +31,14 @@ namespace Script.Logic
             return MoveAction.ReadValue<Vector2>();
         }
 
-        public Vector3 GetInputJump()
+        public bool GetInputJump()
         {
-            return JumpAction.ReadValue<Vector3>();
+            return JumpAction.ReadValue<bool>();
+        }
+
+        public bool GetOpenInventoryButton()
+        {
+            return OpenInventory.ReadValue<bool>();
         }
         
         

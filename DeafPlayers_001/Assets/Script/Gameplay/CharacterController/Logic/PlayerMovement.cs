@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
-namespace Script.Logic
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public class PlayerMovement : PlayerComponent
     {
@@ -81,7 +79,7 @@ namespace Script.Logic
         {
             if (playerControls.JumpAction.triggered && groundedPlayer)
             {
-                Vector3 inputJump = playerControls.GetInputJump();
+                bool inputJump = playerControls.GetInputJump();
                 
                 currentPlayerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
                 Debug.Log("player jump");

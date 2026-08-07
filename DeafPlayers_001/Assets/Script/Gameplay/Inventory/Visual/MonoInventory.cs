@@ -1,8 +1,6 @@
-﻿using System;
-using DeafPlayers.Gameplay.Script.Gameplay.Inventory.Data;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory.Visual
+namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public class MonoInventory : MonoBehaviour
     {
