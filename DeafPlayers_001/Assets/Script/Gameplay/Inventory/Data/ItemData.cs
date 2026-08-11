@@ -5,10 +5,14 @@ namespace DeafPlayers.Gameplay.Script.Gameplay
     [CreateAssetMenu(menuName = "Gameplay/ItemData")]
     public class ItemData : ScriptableObject
     {
-        private string ItemName { get; set; }
-
-        public int StackMaxCount { get; set; }
-        public Sprite Icon { get; set; }
+        [field :  SerializeField]
+        public string ItemName { get; private set; }
+        
+        [field :  SerializeField]
+        public int StackMaxCount { get; private set; }
+        
+        [field :  SerializeField]
+        public Sprite Icon { get; private set; }
         
     }
 }
