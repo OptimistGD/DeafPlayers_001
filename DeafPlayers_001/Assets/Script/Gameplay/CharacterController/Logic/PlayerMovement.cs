@@ -1,49 +1,59 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public class PlayerMovement : PlayerComponent
     {
-        PlayerControls playerControls;
-        
         [SerializeField]
         private CharacterController characterController;
         private bool groundedPlayer;
         
-        [Header ("Calculate Velocity")]
-        private Vector3 currentDirection;
-        [SerializeField]
-        private float playerSpeed;
-        private float strenght;
-        private Vector3 currentPlayerVelocity;
+        private Vector3 currentDirection = Vector3.zero ;
+        private Vector3 currentVelocity;
+        private Vector2 inputDirection;
         
-        [Header ("Calculate Jump")]
-        [SerializeField]
-        private float jumpHeight;
+        private float playerSpeed = 5f;
         private float gravityValue =  -9.81f;
+        private float stickGrounded = -0.5f; //TODO A SUPPRIMER
         
+        private float jumpHeight;
         
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
-
-        private void Start()
-        {
-            if (!playerController.TryGetFirstComponent(out playerControls))
-            {
-                Debug.LogError("playerControls not assigned in BAG");
-            }
-            
-            ApplyGravity();
-        }
-
         public LayerMask worldLayer;
 
+
+        
+        private void OnEnable()
+        {
+            if (PlayerController.TryGetFirstComponent(out PlayerControls playerControls))
+            {
+                playerControls.OnMoveAction += HandleMoveInput;
+            }
+        }
+        private void OnDisable()
+        {
+            if (PlayerController.TryGetFirstComponent(out PlayerControls playerControls))
+            {
+                playerControls.OnMoveAction -= HandleMoveInput;
+            }
+        }
+        
+        //----------
+        
+        void FixedUpdate()
+        {
+            if (characterController.isGrounded && currentVelocity.y < 0)
+            {
+                currentVelocity.y = stickGrounded;
+            }
+            
+            ApplyMovement();
+            ApplyGravity();
+        }
+        
         private void Update()
         {
-            
+            // TODO : Raycast du grounded => a checker si fonctionne
             Ray ray = new Ray(transform.position, Vector3.down);
             if (Physics.Raycast(ray, 2, worldLayer, QueryTriggerInteraction.Collide))
             {
@@ -54,62 +64,25 @@ namespace DeafPlayers.Gameplay.Script.Gameplay
             Debug.Log("player is not grounded");
         }
 
-        void FixedUpdate()
-        {
-            groundedPlayer = characterController.isGrounded;
-            if (groundedPlayer && currentPlayerVelocity.y < 0)
-            {
-                currentPlayerVelocity.z = 0f;
-            }
-            
-            
-            ComputeMovement();
-            ComputeJump();
-        }
+        
+        //---------
 
-        private void ComputeMovement()
+        private void HandleMoveInput(Vector2 newInputDirection)
         {
-            GetPlayerDirection();
-            GetPlayerVelocity();
-            
-            characterController.Move(currentDirection * (playerSpeed * Time.deltaTime));
+            inputDirection = newInputDirection;
         }
         
-        private void ComputeJump()
+        
+        private void ApplyMovement()
         {
-            if (playerControls.JumpAction.triggered && groundedPlayer)
-            {
-                bool inputJump = playerControls.GetInputJump();
-                
-                currentPlayerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
-                Debug.Log("player jump");
-            }
-            Debug.Log("player not jump");
-            
-        }
-
-        private void GetPlayerDirection()
-        {
-            Vector2 inputDirection = playerControls.GetInputDirection();
             currentDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
-            //Debug.Log($"Direction {currentDirection}");
+            characterController.Move(currentDirection * (playerSpeed * Time.deltaTime));
         }
         
         private void ApplyGravity()
         {
-            currentPlayerVelocity.y += gravityValue * Time.deltaTime;
-            //Debug.Log($"Gravity {currentPlayerVelocity}");
+            currentVelocity.y += gravityValue * Time.deltaTime;
+            characterController.Move(currentVelocity * Time.deltaTime);
         }
-        
-        private void GetPlayerVelocity()
-        {
-            Vector3 finalPlayerVelocity = currentDirection * playerSpeed + (currentPlayerVelocity.y * Vector3.up);
-            currentPlayerVelocity += finalPlayerVelocity;
-            //Debug.Log($"Velocity {finalPlayerVelocity}");
-        }
-        
-        
-        
-        
     }
 }

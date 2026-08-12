@@ -3,7 +3,7 @@
 namespace DeafPlayers.Gameplay.Script.Gameplay.Data
 {
     [CreateAssetMenu(menuName = "Gameplay/CardData")]
-    public class CardData :  ScriptableObject
+    public class CardData :  ScriptableObject, IData
     {
         [field : SerializeField]
         public string CardName { get; private set; }

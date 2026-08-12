@@ -4,13 +4,13 @@ namespace DeafPlayers.Gameplay.Script.Gameplay
 {
     public abstract class PlayerComponent : MonoBehaviour, IPlayerComponent
     {
-        protected PlayerController playerController;
+        protected PlayerController PlayerController;
 
         protected virtual void Awake()
         {
-            playerController = GetComponentInParent<PlayerController>();
+            PlayerController = GetComponentInParent<PlayerController>();
             
-            playerController.AddComponent(GetType().Name, this);
+            PlayerController.AddComponent(GetType().Name, this);
             
         }
     }

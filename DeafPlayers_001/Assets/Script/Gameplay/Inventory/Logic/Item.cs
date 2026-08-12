@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
+namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory.Logic
 {
     [System.Serializable]
     public struct Item : IItemIdentity

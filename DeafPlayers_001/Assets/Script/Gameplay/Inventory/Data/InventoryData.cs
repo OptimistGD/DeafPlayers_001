@@ -1,8 +1,7 @@
-﻿using System;
-using DeafPlayers.Gameplay.Script.Gameplay.Logic;
+﻿using DeafPlayers.Gameplay.Script.Gameplay.Inventory.Logic;
 using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay
+namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory
 {
     [CreateAssetMenu(menuName = "Gameplay/InventoryData")]
     public class InventoryData : ScriptableObject

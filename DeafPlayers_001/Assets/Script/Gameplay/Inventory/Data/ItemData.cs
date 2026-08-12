@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DeafPlayers.Gameplay.Script.Gameplay
+namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory
 {
     [CreateAssetMenu(menuName = "Gameplay/ItemData")]
     public class ItemData : ScriptableObject

@@ -6,30 +6,25 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
 {
     public class CardCollection 
     {
-        public void CreateAllCard()
-        {
-            CardDataBase dataBase = Resources.Load<CardDataBase>("DataBase");
-            
-            for (int j = 0; j < dataBase.CollectionSize; j++)
-            {
-                CardData data = dataBase.DataBase[j];
-                Card card = new Card(data, j);
-
-                cardCollectionFull.TryAdd(data, card);
-            }
-        }
-        
         private readonly Card[] currentCollection;
 
         private readonly Dictionary<CardData, Card> cardCollectionFull;
         
-        //TODO a modif car deja accès a CardDataBase
-        private CardCollection(CardDataBase cardDataBase)
+        public CardCollection()
         {
+            CardDataBase dataBase = Resources.Load<CardDataBase>("CardDataBase/CardDataBase");
+                     
             cardCollectionFull = new();
-            currentCollection = new Card[cardDataBase.CollectionSize];
+            currentCollection = new Card[dataBase.CollectionSize];
             
-            CreateAllCard();
+            
+             for (int j = 0; j < dataBase.CollectionSize; j++)
+             {
+                 CardData data = dataBase.DataBase[j];
+                 Card card = new Card(data, j);
+ 
+                 cardCollectionFull.TryAdd(data, card);
+             }
         }
 
 

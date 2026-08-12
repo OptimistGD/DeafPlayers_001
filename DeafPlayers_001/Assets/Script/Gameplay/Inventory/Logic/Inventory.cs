@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
+﻿namespace DeafPlayers.Gameplay.Script.Gameplay.Inventory.Logic
 {
     public class Inventory
     {

@@ -27,9 +27,19 @@
                     "priority": 0
                 },
                 {
+                    "name": "PickCard",
+                    "type": "Button",
+                    "id": "8de63a65-8921-41c7-9c1f-d463a39d8445",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "OpenInventory",
                     "type": "Button",
-                    "id": "b8f363a2-27cd-4cee-8e45-0407aa07b56f",
+                    "id": "25ae513c-18f9-4804-9e43-af173d9f67a6",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -106,7 +116,18 @@
                 },
                 {
                     "name": "",
-                    "id": "e32b8de3-6c06-44dc-bf01-061257db5a98",
+                    "id": "5617474d-fab8-4b37-9e2c-c302b5821ada",
+                    "path": "<Keyboard>/#(F)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickCard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78074816-20e8-4517-a57e-f471a28a59fb",
                     "path": "<Keyboard>/#(E)",
                     "interactions": "",
                     "processors": "",
@@ -114,6 +135,39 @@
                     "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "c8dad54f-48aa-4948-a34e-b0ba982ce0f7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "fb58da69-5f01-4210-a987-500ae8f89ea1",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4cc4bb7a-398a-43c9-85c6-9bf0482ff732",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

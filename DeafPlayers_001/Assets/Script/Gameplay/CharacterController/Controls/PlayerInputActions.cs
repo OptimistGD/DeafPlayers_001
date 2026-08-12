@@ -113,6 +113,26 @@ namespace Gameplay.CharacterController.Controls
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""PickCard"",
+                    ""type"": ""Button"",
+                    ""id"": ""8de63a65-8921-41c7-9c1f-d463a39d8445"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""25ae513c-18f9-4804-9e43-af173d9f67a6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -181,6 +201,61 @@ namespace Gameplay.CharacterController.Controls
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5617474d-fab8-4b37-9e2c-c302b5821ada"",
+                    ""path"": ""<Keyboard>/#(F)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickCard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78074816-20e8-4517-a57e-f471a28a59fb"",
+                    ""path"": ""<Keyboard>/#(E)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""c8dad54f-48aa-4948-a34e-b0ba982ce0f7"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fb58da69-5f01-4210-a987-500ae8f89ea1"",
+                    ""path"": ""<Keyboard>/#(E)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4cc4bb7a-398a-43c9-85c6-9bf0482ff732"",
+                    ""path"": ""<Keyboard>/#(E)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -203,6 +278,8 @@ namespace Gameplay.CharacterController.Controls
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+            m_Gameplay_PickCard = m_Gameplay.FindAction("PickCard", throwIfNotFound: true);
+            m_Gameplay_OpenInventory = m_Gameplay.FindAction("OpenInventory", throwIfNotFound: true);
         }
 
         ~@PlayerInputActions()
@@ -285,6 +362,8 @@ namespace Gameplay.CharacterController.Controls
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_Move;
         private readonly InputAction m_Gameplay_Jump;
+        private readonly InputAction m_Gameplay_PickCard;
+        private readonly InputAction m_Gameplay_OpenInventory;
         /// <summary>
         /// Provides access to input actions defined in input action map "Gameplay".
         /// </summary>
@@ -305,6 +384,14 @@ namespace Gameplay.CharacterController.Controls
             /// </summary>
             public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
             /// <summary>
+            /// Provides access to the underlying input action "Gameplay/PickCard".
+            /// </summary>
+            public InputAction @PickCard => m_Wrapper.m_Gameplay_PickCard;
+            /// <summary>
+            /// Provides access to the underlying input action "Gameplay/OpenInventory".
+            /// </summary>
+            public InputAction @OpenInventory => m_Wrapper.m_Gameplay_OpenInventory;
+            /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -314,9 +401,6 @@ namespace Gameplay.CharacterController.Controls
             public void Disable() { Get().Disable(); }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
             public bool enabled => Get().enabled;
-
-            public InputAction @OpenInventory => m_Wrapper.m_Gameplay_Jump;
-
             /// <summary>
             /// Implicitly converts an <see ref="GameplayActions" /> to an <see ref="InputActionMap" /> instance.
             /// </summary>
@@ -339,6 +423,12 @@ namespace Gameplay.CharacterController.Controls
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @PickCard.started += instance.OnPickCard;
+                @PickCard.performed += instance.OnPickCard;
+                @PickCard.canceled += instance.OnPickCard;
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
             }
 
             /// <summary>
@@ -356,6 +446,12 @@ namespace Gameplay.CharacterController.Controls
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @PickCard.started -= instance.OnPickCard;
+                @PickCard.performed -= instance.OnPickCard;
+                @PickCard.canceled -= instance.OnPickCard;
+                @OpenInventory.started -= instance.OnOpenInventory;
+                @OpenInventory.performed -= instance.OnOpenInventory;
+                @OpenInventory.canceled -= instance.OnOpenInventory;
             }
 
             /// <summary>
@@ -423,6 +519,20 @@ namespace Gameplay.CharacterController.Controls
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnJump(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "PickCard" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPickCard(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "OpenInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnOpenInventory(InputAction.CallbackContext context);
         }
     }
 }
