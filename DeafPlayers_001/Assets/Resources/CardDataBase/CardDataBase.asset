@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c180f718603471c8d1f7c6b25e56435, type: 3}
   m_Name: CardDataBase
   m_EditorClassIdentifier: DeafPlayers.Gameplay::DeafPlayers.Gameplay.Script.Gameplay.Data.CardDataBase
-  <DataBase>k__BackingField: []
+  <DataBase>k__BackingField:
+  - {fileID: 11400000, guid: 033a3bcfa6d1d7c44b87f29af9d8eb16, type: 2}
+  - {fileID: 11400000, guid: b1680135b5c8242479cabbbd01e21fba, type: 2}
+  - {fileID: 11400000, guid: 100cd06ba8f58f943880b2f263957cde, type: 2}

@@ -61,6 +61,7 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.PlayerInteractions
         
         public void OnInteract()
         {
+            Debug.Log("Input F is pressed");
             IData data = currentInteractable.Request();
 
             if (data is CardData cardData)

@@ -32,6 +32,7 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
         {
             if (!cardCollectionFull.TryGetValue(cardData, out Card card))
             {
+                Debug.Log("Card already in Collection");
                 return false;
             }
             
@@ -43,11 +44,12 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
         {
             if (currentCollection[card.Index] != null)
             {
+                Debug.Log("Card already in Collection");
                 return false;
             }
             
             currentCollection[card.Index] = card;
-            
+            Debug.Log("Card is in Collection");
             return true;
         }
         

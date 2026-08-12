@@ -15,13 +15,14 @@ namespace DeafPlayers.Gameplay.Script.Gameplay
         
         private float playerSpeed = 5f;
         private float gravityValue =  -9.81f;
-        private float stickGrounded = -0.5f; //TODO A SUPPRIMER
+        private float stickGrounded = -0.5f;
         
         private float jumpHeight;
         
+        [SerializeField]
         public LayerMask worldLayer;
-
-
+        
+        //----------
         
         private void OnEnable()
         {
@@ -54,14 +55,13 @@ namespace DeafPlayers.Gameplay.Script.Gameplay
         private void Update()
         {
             // TODO : Raycast du grounded => a checker si fonctionne
+            
             Ray ray = new Ray(transform.position, Vector3.down);
+            
             if (Physics.Raycast(ray, 2, worldLayer, QueryTriggerInteraction.Collide))
             {
                 Debug.DrawRay(ray.origin, ray.direction * 2, Color.green);
-                Debug.Log("player is grounded");
             }
-            Debug.DrawRay(ray.origin, ray.direction * 2, Color.red);
-            Debug.Log("player is not grounded");
         }
 
         
