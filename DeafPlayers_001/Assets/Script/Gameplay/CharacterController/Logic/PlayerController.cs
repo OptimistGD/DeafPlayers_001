@@ -11,8 +11,7 @@ namespace DeafPlayers.Gameplay.Script.Gameplay
         private void Awake()
         {
             CardCollections = new CardCollection();
+            
         }
-        
-        
     }
 }

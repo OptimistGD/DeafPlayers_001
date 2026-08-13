@@ -9,9 +9,16 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Visual
     {
         [SerializeField] private CardData cardData;
         
-        public IData Request()
+        public void Request(PlayerInteraction playerInteraction)
         {
-            return cardData;
+            PlayerController playerController = playerInteraction.PlayerController;
+
+            if (!playerController.CardCollections.TryAddCard(cardData))
+            {
+                return;
+            }
+            
+            Destroy(gameObject);
         }
     }
 }

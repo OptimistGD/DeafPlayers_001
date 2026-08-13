@@ -6,6 +6,8 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
 {
     public class CardCollection 
     {
+        public Card[] CurrentCollection => currentCollection;
+        
         private readonly Card[] currentCollection;
 
         private readonly Dictionary<CardData, Card> cardCollectionFull;
@@ -18,29 +20,29 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
             currentCollection = new Card[dataBase.CollectionSize];
             
             
-             for (int j = 0; j < dataBase.CollectionSize; j++)
+             for (int i = 0; i < dataBase.CollectionSize; i++)
              {
-                 CardData data = dataBase.DataBase[j];
-                 Card card = new Card(data, j);
+                 CardData data = dataBase.DataBase[i];
+                 Card card = new Card(data, i);
  
                  cardCollectionFull.TryAdd(data, card);
              }
         }
 
+        //--------------
 
         public bool TryAddCard(CardData cardData)
         {
             if (!cardCollectionFull.TryGetValue(cardData, out Card card))
             {
-                Debug.Log("Card already in Collection");
                 return false;
             }
             
+            Debug.Log($"Recherche de : {cardData.name})");
             return TryAddCard(card);
         }
-        
-        
-        public bool TryAddCard(Card card)
+
+        private bool TryAddCard(Card card)
         {
             if (currentCollection[card.Index] != null)
             {
@@ -50,9 +52,8 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.Logic
             
             currentCollection[card.Index] = card;
             Debug.Log("Card is in Collection");
+            
             return true;
         }
-        
-        
     }
 }

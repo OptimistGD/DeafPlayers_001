@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &233939990076726075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1265715018736678628}
+  - component: {fileID: 8218456313664176877}
+  m_Layer: 0
+  m_Name: PlayerInteraction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1265715018736678628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233939990076726075}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3083798476076683182}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8218456313664176877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233939990076726075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136091a51f014b1db582e0e4cabebf68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DeafPlayers.Gameplay::DeafPlayers.Gameplay.Script.Gameplay.PlayerInteractions.PlayerInteraction
+  sphereSize: 2
 --- !u!1 &663547245997437465
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,8 +101,8 @@ GameObject:
   - component: {fileID: 7339660723975262167}
   - component: {fileID: 7206427221707403313}
   - component: {fileID: 8132310478448207991}
-  - component: {fileID: 120420971839232695}
   - component: {fileID: 1554996889970439552}
+  - component: {fileID: 120420971839232695}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -81,6 +126,7 @@ Transform:
   - {fileID: 5731791562816640896}
   - {fileID: 630255401116149411}
   - {fileID: 4682269187674048699}
+  - {fileID: 1265715018736678628}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7339660723975262167
@@ -165,18 +211,6 @@ CharacterController:
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &120420971839232695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6419100527819025811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6661ffb6067a23438a010758490aeac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Script.Logic.PlayerController
 --- !u!65 &1554996889970439552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -198,6 +232,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &120420971839232695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6419100527819025811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6661ffb6067a23438a010758490aeac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Script.Logic.PlayerController
 --- !u!1 &7717793650141754183
 GameObject:
   m_ObjectHideFlags: 0

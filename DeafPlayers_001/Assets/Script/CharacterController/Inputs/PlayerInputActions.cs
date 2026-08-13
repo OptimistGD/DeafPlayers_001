@@ -214,17 +214,6 @@ namespace Gameplay.CharacterController.Controls
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""78074816-20e8-4517-a57e-f471a28a59fb"",
-                    ""path"": ""<Keyboard>/#(E)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""OpenInventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""1D Axis"",
                     ""id"": ""c8dad54f-48aa-4948-a34e-b0ba982ce0f7"",
                     ""path"": ""1DAxis"",
@@ -423,9 +412,9 @@ namespace Gameplay.CharacterController.Controls
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @PickCard.started += instance.OnPickup;
-                @PickCard.performed += instance.OnPickup;
-                @PickCard.canceled += instance.OnPickup;
+                @PickCard.started += instance.OnPickCard;
+                @PickCard.performed += instance.OnPickCard;
+                @PickCard.canceled += instance.OnPickCard;
                 @OpenInventory.started += instance.OnOpenInventory;
                 @OpenInventory.performed += instance.OnOpenInventory;
                 @OpenInventory.canceled += instance.OnOpenInventory;
@@ -446,9 +435,9 @@ namespace Gameplay.CharacterController.Controls
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
-                @PickCard.started -= instance.OnPickup;
-                @PickCard.performed -= instance.OnPickup;
-                @PickCard.canceled -= instance.OnPickup;
+                @PickCard.started -= instance.OnPickCard;
+                @PickCard.performed -= instance.OnPickCard;
+                @PickCard.canceled -= instance.OnPickCard;
                 @OpenInventory.started -= instance.OnOpenInventory;
                 @OpenInventory.performed -= instance.OnOpenInventory;
                 @OpenInventory.canceled -= instance.OnOpenInventory;
@@ -525,7 +514,7 @@ namespace Gameplay.CharacterController.Controls
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnPickup(InputAction.CallbackContext context);
+            void OnPickCard(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "OpenInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>

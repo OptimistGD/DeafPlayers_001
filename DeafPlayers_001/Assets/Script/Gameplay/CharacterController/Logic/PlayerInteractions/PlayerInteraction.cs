@@ -7,12 +7,11 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.PlayerInteractions
     public class PlayerInteraction : PlayerComponent
     {
         [SerializeField] private float sphereSize;
-
+        [SerializeField] private LayerMask interactableLayer;
         private IInteractable currentInteractable;
         
         //Buffer
         private Collider[] buffers = new Collider[10];
-
 
         
         private void OnEnable()
@@ -34,21 +33,14 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.PlayerInteractions
         
         //--------
         
-        public void Start()
-        {
-            if (!PlayerController.TryGetFirstComponent(out PlayerInteraction playerInteraction))
-            {
-                Debug.LogError("playerInteraction not assigned in BAG");
-            }
-        }
-        
-        
         private void FixedUpdate()
         {
-            int size = Physics.OverlapSphereNonAlloc(transform.position, sphereSize, buffers);
+            int size = Physics.OverlapSphereNonAlloc(transform.position, sphereSize, buffers, interactableLayer, QueryTriggerInteraction.Collide);
+
             for (int i = 0; i < size; i++)
             {
                 Collider collider = buffers[i];
+                Debug.Log($"Collider {i} collider : {collider.gameObject.name}");
 
                 if (collider.TryGetComponent(out IInteractable interactable))
                 {
@@ -56,18 +48,18 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.PlayerInteractions
                 }
             }
         }
+        //debug => a retirer
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, sphereSize);
+        }
         
         //------------
         
         public void OnInteract()
         {
-            Debug.Log("Input F is pressed");
-            IData data = currentInteractable.Request();
-
-            if (data is CardData cardData)
-            {
-                PlayerController.CardCollections.TryAddCard(cardData);
-            }
+            currentInteractable?.Request(this);
         }
     }
 }

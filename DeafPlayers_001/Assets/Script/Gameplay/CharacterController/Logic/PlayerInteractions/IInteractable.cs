@@ -4,8 +4,6 @@ namespace DeafPlayers.Gameplay.Script.Gameplay.PlayerInteractions
 {
     public interface IInteractable
     {
-        public IData Request();
-
-
+        public void Request(PlayerInteraction playerInteraction);
     }
 }
